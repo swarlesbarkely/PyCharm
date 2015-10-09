@@ -67,16 +67,16 @@ def CreateFunctionHeader():
 
     print('')
     print('/**************************************************************************')
-    print('* DESCRIPTION:\t' + sFunctionDescription)
+    print('* Description:\t' + sFunctionDescription)
           
-    print('*\n* INPUTS:\t\t' + asArguments[0])
+    print('*\n* Inputs:\t\t' + asArguments[0])
     for each in range(1,len(asArguments)):
         if each == 0:
           continue
         else:
           print ('*\t\t\t\t' + asArguments[each])
 
-    print('*\n* RETURNS:\t\t' + asReturns[0])
+    print('*\n* Returns:\t\t' + asReturns[0])
     for each in range(1,len(asReturns)):
         if each == 0:
           continue
@@ -87,7 +87,7 @@ def CreateFunctionHeader():
     # Print mini header
     print('')
     print('/**************************************************************************')
-    print('* HISTORY:\t' + sToday + ' ' + sInitials + ' ' + sChanges)
+    print('* History:\t' + sToday + ' ' + sInitials + ' ' + sChanges)
     print('**************************************************************************/')
     return
 
@@ -131,15 +131,15 @@ def CreateFileHeader (sFilePath = 'null'):
             # Print header
             File.write('/**************************************************************************')
             File.write('\n')
-            File.write('* DESCRIPTION:\t' + sDescription)
+            File.write('* Description:\t' + sDescription)
             File.write('\n')
             File.write('*')
             File.write('\n')
-            File.write('* AUTHOR:\t\t' + sAuthor)
+            File.write('* Author:\t\t' + sAuthor)
             File.write('\n')
             File.write('*')
             File.write('\n')
-            File.write('* CHANGELOG:\t' + sToday + ' ' + sAuthor + ' | Initial revision')
+            File.write('* Changelog:\t' + sToday + ' ' + sAuthor + ' | Initial revision')
             File.write('\n')
             File.write('*')
             File.write('\n')
@@ -162,11 +162,11 @@ def CreateFileHeader (sFilePath = 'null'):
     else:
         # Print header
         print('/**************************************************************************')
-        print('* DESCRIPTION:\t' + sDescription)
+        print('* Description:\t' + sDescription)
         print('*')
-        print('* AUTHOR:\t\t' + sAuthor)
+        print('* Author:\t\t' + sAuthor)
         print('*')
-        print('* CHANGELOG:\t' + sToday + ' ' + sAuthor + ' | Initial revision')
+        print('* Changelog:\t' + sToday + ' ' + sAuthor + ' | Initial revision')
         print('*')
         print('**************************************************************************/')
         print('#ifndef ' + sIncludeGuardName)
