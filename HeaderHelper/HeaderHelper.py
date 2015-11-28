@@ -8,11 +8,11 @@ import datetime
 def CreateFunctionHeader():
 
     # Get module description
-    sFunctionDescription = input ('Description: If more than one line is needed, end each line with a comma\n')
+    sFunctionDescription = input ('Description:\n')
 
-    while sFunctionDescription.endswith(','):
-        sFunctionDescription = sFunctionDescription.rstrip(',')
-        sFunctionDescription += '\n*\t\t\t\t' + input()
+#    while sFunctionDescription.endswith(','):
+#        sFunctionDescription = sFunctionDescription.rstrip(',')
+#        sFunctionDescription += '\n*\t\t\t\t' + input()
 
     # Get input arguments
 
