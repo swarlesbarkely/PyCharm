@@ -4,12 +4,14 @@
 # Outputs: Byte count, % used of size limit (if given)
 ##############################################################################
 
-def CountBytes (InputFile, nSizeLimit = 0):
+import parser
+
+def CountBytes (sInputFile, SizeLimit = ''):
 
     nByteCount = 0
 
     try:
-        FileToRead = open (InputFile, 'r')
+        FileToRead = open (sInputFile, 'r')
 
     except OSError:
         print ("Error opening file!")
@@ -49,7 +51,12 @@ def CountBytes (InputFile, nSizeLimit = 0):
     # Print the results
     print ("Number of data bytes: " + str (nByteCount))
 
-    if nSizeLimit != 0:
-        print ("Percent used: " + str (float (100 * nByteCount / nSizeLimit)))
+    if not SizeLimit == '':
+        # Check for any suffixes on the size limit
+        SizeLimit = str (SizeLimit).replace ('k', '* 1024')
+        SizeLimit = str (SizeLimit).replace ('M', '* 1024**2')
+        SizeLimit = str (SizeLimit).replace ('G', '* 1024**4')
+        SizeLimit = eval (parser.expr(SizeLimit).compile())
+        print ("Percent used: " + str (float (100 * nByteCount / SizeLimit)))
 
     return
