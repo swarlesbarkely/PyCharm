@@ -2,7 +2,6 @@
 # Counts the number of programming bytes in a hex or s19 file
 # Inputs: File, Size Limit (optional)
 # Outputs: Byte count, % used of size limit (if given)
-# TEST COMMENT
 ##############################################################################
 
 import parser
