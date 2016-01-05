@@ -1,5 +1,4 @@
-# PyCharm
-PyCharm projects
+Python projects
 
 * HeaderHelper
 	* CreateFileHeader (path)
