@@ -8,61 +8,61 @@ import parser
 
 def CountBytes (sInputFile, SizeLimit = ''):
 
-    nByteCount = 0
+	nByteCount = 0
 
-    try:
-        FileToRead = open (sInputFile, 'r')
+	try:
+		FileToRead = open (sInputFile, 'r')
 
-    except OSError:
-        print ("Error opening file!")
-        return
+	except OSError:
+		print ("Error opening file!")
+		return
 
-    sLine = FileToRead.readline ()
+	sLine = FileToRead.readline ()
 
-    if sLine[0] == ':':
-        FileFormat = 'hex'
+	if sLine[0] == ':':
+		FileFormat = 'hex'
 
-    elif sLine[0] == 'S':
-        FileFormat = 's19'
+	elif sLine[0] == 'S':
+		FileFormat = 's19'
 
-    else:
-        # Unknown file format
-        print ("Unknown file format!")
-        return
+	else:
+		# Unknown file format
+		print ("Unknown file format!")
+		return
 
-    if FileFormat == 'hex':
-        # Read until we get an empty string (this does not include newlines)
-        while not sLine == '':
-            if sLine[7:9] == '00':
-                # This line contains data --> add the byte count to our counter
-                nByteCount += int (sLine[1:3], 16)
+	if FileFormat == 'hex':
+		# Read until we get an empty string (this does not include newlines)
+		while not sLine == '':
+			if sLine[7:9] == '00':
+				# This line contains data --> add the byte count to our counter
+				nByteCount += int (sLine[1:3], 16)
 
-            sLine = FileToRead.readline ()
+			sLine = FileToRead.readline ()
 
-    elif FileFormat == 's19':
-        # Read until we get an empty string (this does not include newlines)
-        while not sLine == '':
+	elif FileFormat == 's19':
+		# Read until we get an empty string (this does not include newlines)
+		while not sLine == '':
 			if sLine[1:2] == '1':
-                # This line contains data and 3 non-data bytes --> add the data byte count to our counter
-                nByteCount += (int (sLine[2:4], 16) - 3)
-            elif sLine[1:2] == '2':
-                # This line contains data and 4 non-data bytes --> add the data byte count to our counter
-                nByteCount += (int (sLine[2:4], 16) - 4)
-            elif sLine[1:2] == '3':
-                # This line contains data and 5 non-data bytes --> add the data byte count to our counter
+				# This line contains data and 3 non-data bytes --> add the data byte count to our counter
+				nByteCount += (int (sLine[2:4], 16) - 3)
+			elif sLine[1:2] == '2':
+				# This line contains data and 4 non-data bytes --> add the data byte count to our counter
+				nByteCount += (int (sLine[2:4], 16) - 4)
+			elif sLine[1:2] == '3':
+				# This line contains data and 5 non-data bytes --> add the data byte count to our counter
 				nByteCount += (int (sLine[2:4], 16) - 5)
 
-            sLine = FileToRead.readline ()
+		sLine = FileToRead.readline ()
 
-    # Print the results
-    print ("Number of data bytes: " + str (nByteCount))
+	# Print the results
+	print ("Number of data bytes: " + str (nByteCount))
 
-    if not SizeLimit == '':
-        # Check for any suffixes on the size limit
-        SizeLimit = str (SizeLimit).replace ('k', '* 1024')
-        SizeLimit = str (SizeLimit).replace ('M', '* 1024**2')
-        SizeLimit = str (SizeLimit).replace ('G', '* 1024**4')
-        SizeLimit = eval (parser.expr(SizeLimit).compile())
-        print ("Percent used: " + str (float (100 * nByteCount / SizeLimit)))
+	if not SizeLimit == '':
+		# Check for any suffixes on the size limit
+		SizeLimit = str (SizeLimit).replace ('k', '* 1024')
+		SizeLimit = str (SizeLimit).replace ('M', '* 1024**2')
+		SizeLimit = str (SizeLimit).replace ('G', '* 1024**4')
+		SizeLimit = eval (parser.expr(SizeLimit).compile())
+		print ("Percent used: " + str (float (100 * nByteCount / SizeLimit)))
 
-    return
+	return
