@@ -71,9 +71,15 @@ def main (argv):
     elif FileFormat == 's19':
         # Read until we get an empty string (this does not include newlines)
         while not sLine == '':
-            if sLine[1:2] == '1' or sLine[1:2] == '2' or sLine[1:2] == '3':
-                # This line contains data --> add the byte count to our counter
-                nByteCount += int (sLine[2:4], 16)
+			if sLine[1:2] == '1':
+                # This line contains data and 3 non-data bytes --> add the data byte count to our counter
+                nByteCount += (int (sLine[2:4], 16) - 3)
+            elif sLine[1:2] == '2':
+                # This line contains data and 4 non-data bytes --> add the data byte count to our counter
+                nByteCount += (int (sLine[2:4], 16) - 4)
+            elif sLine[1:2] == '3':
+                # This line contains data and 5 non-data bytes --> add the data byte count to our counter
+				nByteCount += (int (sLine[2:4], 16) - 5)
 
             sLine = FileToRead.readline ()
 
