@@ -52,7 +52,7 @@ def CountBytes (sInputFile, SizeLimit = ''):
 				# This line contains data and 5 non-data bytes --> add the data byte count to our counter
 				nByteCount += (int (sLine[2:4], 16) - 5)
 
-		sLine = FileToRead.readline ()
+			sLine = FileToRead.readline ()
 
 	# Print the results
 	print ("Number of data bytes: " + str (nByteCount))
