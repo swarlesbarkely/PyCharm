@@ -1,4 +1,4 @@
-##############################################################################
+    ##############################################################################
 # Counts the number of programming bytes in a hex or s19 file
 # Inputs: File, Size Limit (optional)
 # Outputs: Byte count, % used of size limit (if given)
@@ -71,7 +71,7 @@ def main (argv):
     elif FileFormat == 's19':
         # Read until we get an empty string (this does not include newlines)
         while not sLine == '':
-			if sLine[1:2] == '1':
+            if sLine[1:2] == '1':
                 # This line contains data and 3 non-data bytes --> add the data byte count to our counter
                 nByteCount += (int (sLine[2:4], 16) - 3)
             elif sLine[1:2] == '2':
@@ -79,7 +79,7 @@ def main (argv):
                 nByteCount += (int (sLine[2:4], 16) - 4)
             elif sLine[1:2] == '3':
                 # This line contains data and 5 non-data bytes --> add the data byte count to our counter
-				nByteCount += (int (sLine[2:4], 16) - 5)
+                nByteCount += (int (sLine[2:4], 16) - 5)
 
             sLine = FileToRead.readline ()
 
